@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+  <services>
+    <defaults autowire="true" autoconfigure="true" public="false"/>
+
+    <service id="Harmony\Bundle\ModularExtraBundle\Validator\Constraints\UniqueEntityValidator" public="false">
+      <argument type="service" id="doctrine"/>
+      <tag name="validator.constraint_validator" alias="harmony_modular_extra.unique_validator"/>
+    </service>
+
+    <service id="Harmony\Bundle\ModularExtraBundle\Twig\ModuleExtension" public="false">
+      <argument type="service" id="harmony_modular.module_manager" on-invalid="ignore"/>
+    </service>
+
+    <service id="Harmony\Bundle\ModularExtraBundle\Twig\BaseTemplateExtension" public="false">
+      <argument>%harmony_modular_extra.twig.base_template%</argument>
+    </service>
+  </services>
+</container>
