@@ -45,7 +45,7 @@ class UniqueEntityValidator extends BaseValidator
         $metadata   = $this->registry->getManagerForClass($class)->getClassMetadata($class);
         $repository = $this->registry->getRepository($class);
 
-        if ($repository instanceof ModularRepositoryInterface && $metadata->hasField('module')) {
+        if ($repository instanceof ModularRepositoryInterface && $metadata->hasAssociation('module')) {
             $fields = is_array($constraint->fields) ? $constraint->fields : [$constraint->fields];
 
             if (!array_search('module', $fields)) {
