@@ -8,7 +8,7 @@
 
 namespace Harmony\Bundle\ModularExtraBundle\EventListener;
 
-use Harmony\Bundle\ModularExtraBundle\Module\Options;
+use Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -23,36 +23,22 @@ class OptionsSubscriber implements EventSubscriberInterface
     private $container;
 
     /**
-     * @var string
-     */
-    private $modularType;
-
-    /**
-     * @var string
-     */
-    private $optionsService;
-
-    /**
      * @param ContainerInterface $container
-     * @param string             $modularType
-     * @param string             $optionsService
      */
-    public function __construct(ContainerInterface $container, $modularType, $optionsService)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->modularType = $modularType;
-        $this->optionsService = $optionsService;
     }
 
     /**
-     * @return Options
+     * @return OptionsRegistry
      */
-    public function getOptions()
+    public function getOptionsRegistry()
     {
-        /** @var Options $options */
-        $options = $this->container->get($this->optionsService);
+        /** @var OptionsRegistry $registry */
+        $registry = $this->container->get(OptionsRegistry::class);
 
-        return $options;
+        return $registry;
     }
 
     /**
@@ -76,12 +62,18 @@ class OptionsSubscriber implements EventSubscriberInterface
             return;
         }
 
+        if (!$this->getOptionsRegistry()->has($module->getModularType())) {
+            return;
+        }
+
         $accessor = PropertyAccess::createPropertyAccessor();
 
         if (!$accessor->isReadable($module, 'options')) {
             return;
         }
 
-        $this->getOptions()->set($accessor->getValue($module, 'options'));
+        $options = $this->getOptionsRegistry()->getOptions($module->getModularType());
+
+        $options->set($accessor->getValue($module, 'options'));
     }
 }
