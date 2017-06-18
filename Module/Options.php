@@ -10,10 +10,12 @@ namespace Harmony\Bundle\ModularExtraBundle\Module;
 
 class Options
 {
+    private $defaults;
     private $parameters;
 
     public function __construct(array $parameters = [])
     {
+        $this->defaults   = $parameters;
         $this->parameters = $parameters;
     }
 
@@ -38,5 +40,10 @@ class Options
     public function get($key)
     {
         return $this->parameters[$key];
+    }
+
+    public function getDefaults()
+    {
+        return $this->defaults;
     }
 }
