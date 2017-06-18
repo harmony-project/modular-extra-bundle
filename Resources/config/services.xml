@@ -7,23 +7,23 @@
   <services>
     <defaults autowire="true" autoconfigure="true" public="false"/>
 
-    <service id="Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry"/>
+    <service id="Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry" public="true"/>
 
     <service id="Harmony\Bundle\ModularExtraBundle\EventListener\OptionsSubscriber">
       <argument type="service" id="service_container"/>
       <tag name="kernel.event_subscriber" priority="100"/>
     </service>
 
-    <service id="Harmony\Bundle\ModularExtraBundle\Validator\Constraints\UniqueEntityValidator" public="false">
+    <service id="Harmony\Bundle\ModularExtraBundle\Validator\Constraints\UniqueEntityValidator">
       <argument type="service" id="doctrine"/>
       <tag name="validator.constraint_validator" alias="harmony_modular_extra.unique_validator"/>
     </service>
 
-    <service id="Harmony\Bundle\ModularExtraBundle\Twig\ModuleExtension" public="false">
+    <service id="Harmony\Bundle\ModularExtraBundle\Twig\ModuleExtension">
       <argument type="service" id="harmony_modular.module_manager" on-invalid="ignore"/>
     </service>
 
-    <service id="Harmony\Bundle\ModularExtraBundle\Twig\BaseTemplateExtension" public="false">
+    <service id="Harmony\Bundle\ModularExtraBundle\Twig\BaseTemplateExtension">
       <argument>%harmony_modular_extra.twig.base_template%</argument>
     </service>
   </services>
