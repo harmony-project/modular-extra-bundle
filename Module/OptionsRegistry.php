@@ -54,6 +54,6 @@ class OptionsRegistry
      */
     public function getFormType($type)
     {
-        return $this->services[$type]['service'];
+        return $this->services[$type]['form_type'];
     }
 }
