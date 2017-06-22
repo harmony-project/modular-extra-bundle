@@ -11,7 +11,10 @@ namespace Harmony\Bundle\ModularExtraBundle\Module;
 
 class OptionsRegistry
 {
-    private $services;
+    /**
+     * @var array
+     */
+    private $services = [];
 
     /**
      * @param string      $service
