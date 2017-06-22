@@ -9,6 +9,7 @@
 namespace Harmony\Bundle\ModularExtraBundle\EventListener;
 
 use Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry;
+use Harmony\Component\ModularRouting\Manager\ModuleManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -42,6 +43,21 @@ class OptionsSubscriber implements EventSubscriberInterface
     }
 
     /**
+     * @return ModuleManagerInterface|null
+     */
+    public function getModuleManager()
+    {
+        if (!$this->container->has('harmony_modular.module_manager')) {
+            return null;
+        }
+
+        /** @var ModuleManagerInterface $manager */
+        $manager = $this->container->get('harmony_modular.module_manager');
+
+        return $manager;
+    }
+
+    /**
      * @return array
      */
     public static function getSubscribedEvents()
@@ -58,7 +74,7 @@ class OptionsSubscriber implements EventSubscriberInterface
      */
     public function onKernelRequest(GetResponseEvent $event)
     {
-        if (null === $module = $event->getRequest()->get('module')) {
+        if (!$this->getModuleManager() || null === $module = $this->getModuleManager()->getCurrentModule()) {
             return;
         }
 
