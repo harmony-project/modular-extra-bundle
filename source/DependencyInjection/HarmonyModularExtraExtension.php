@@ -16,6 +16,8 @@ use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 
 /**
+ * Loads and manages the bundle configuration.
+ *
  * @author Tim Goudriaan <tim@harmony-project.io>
  */
 class HarmonyModularExtraExtension extends Extension

@@ -1,16 +1,25 @@
 <?xml version="1.0" ?>
-
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<container
+  xmlns="http://symfony.com/schema/dic/services"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
 
   <services>
-    <defaults autowire="true" autoconfigure="true" public="false"/>
+    <defaults public="false"/>
 
-    <service id="Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry" public="true"/>
+    <service id="Harmony\Bundle\ModularExtraBundle\OptionsRegistry" public="true"/>
 
     <service id="Harmony\Bundle\ModularExtraBundle\EventListener\OptionsSubscriber">
-      <argument type="service" id="service_container"/>
+      <argument type="service">
+        <service class="Symfony\Component\DependencyInjection\ServiceLocator">
+          <argument type="collection">
+            <argument type="service" key="Harmony\Bundle\ModularExtraBundle\OptionsRegistry" id="Harmony\Bundle\ModularExtraBundle\OptionsRegistry"/>
+            <argument type="service" key="Harmony\Component\ModularRouting\Manager\ModuleManagerInterface" id="Harmony\Component\ModularRouting\Manager\ModuleManagerInterface" on-invalid="ignore"/>
+          </argument>
+          <tag name="container.service_locator"/>
+        </service>
+      </argument>
       <tag name="kernel.event_subscriber" priority="100"/>
     </service>
 
@@ -21,10 +30,12 @@
 
     <service id="Harmony\Bundle\ModularExtraBundle\Twig\ModuleExtension">
       <argument type="service" id="harmony_modular.module_manager" on-invalid="ignore"/>
+      <tag name="twig.extension"/>
     </service>
 
     <service id="Harmony\Bundle\ModularExtraBundle\Twig\BaseTemplateExtension">
       <argument>%harmony_modular_extra.twig.base_template%</argument>
+      <tag name="twig.extension"/>
     </service>
   </services>
 </container>

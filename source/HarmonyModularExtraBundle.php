@@ -10,7 +10,7 @@
 
 namespace Harmony\Bundle\ModularExtraBundle;
 
-use Harmony\Bundle\ModularExtraBundle\DependencyInjection\Compiler\OptionsPass;
+use Harmony\Bundle\ModularExtraBundle\DependencyInjection\Compiler\OptionsResolverPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -24,6 +24,6 @@ class HarmonyModularExtraBundle extends Bundle
      */
     public function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new OptionsPass);
+        $container->addCompilerPass(new OptionsResolverPass);
     }
 }

@@ -13,6 +13,8 @@ namespace Harmony\Bundle\ModularExtraBundle\Twig;
 use Harmony\Component\ModularRouting\Manager\ModuleManager;
 
 /**
+ * Adds the `module` global to Twig.
+ *
  * @author Tim Goudriaan <tim@harmony-project.io>
  */
 class ModuleExtension extends \Twig_Extension implements \Twig_Extension_GlobalsInterface

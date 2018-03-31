@@ -11,6 +11,8 @@
 namespace Harmony\Bundle\ModularExtraBundle\Twig;
 
 /**
+ * Adds the `modular_base_template` function to Twig.
+ *
  * @author Tim Goudriaan <tim@harmony-project.io>
  */
 class BaseTemplateExtension extends \Twig_Extension

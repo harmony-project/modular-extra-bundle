@@ -6,9 +6,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Harmony\Bundle\ModularExtraBundle\Module;
+namespace Harmony\Bundle\ModularExtraBundle;
 
-
+/**
+ * Holds data associated with `Options` objects of modules.
+ *
+ * @author Tim Goudriaan <tim@harmony-project.io>
+ */
 class OptionsRegistry
 {
     /**
@@ -33,7 +37,7 @@ class OptionsRegistry
     /**
      * @param string $type
      *
-     * @return bool
+     * @return boolean
      */
     public function has($type)
     {

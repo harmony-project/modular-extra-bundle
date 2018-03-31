@@ -8,14 +8,19 @@
 
 namespace Harmony\Bundle\ModularExtraBundle\EventListener;
 
-use Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry;
+use Harmony\Bundle\ModularExtraBundle\OptionsRegistry;
 use Harmony\Component\ModularRouting\Manager\ModuleManagerInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
+/**
+ * Handles events regarding module options.
+ *
+ * @author Tim Goudriaan <tim@harmony-project.io>
+ */
 class OptionsSubscriber implements EventSubscriberInterface
 {
     /**
@@ -47,12 +52,12 @@ class OptionsSubscriber implements EventSubscriberInterface
      */
     public function getModuleManager()
     {
-        if (!$this->container->has('harmony_modular.module_manager')) {
+        if (!$this->container->has(ModuleManagerInterface::class)) {
             return null;
         }
 
         /** @var ModuleManagerInterface $manager */
-        $manager = $this->container->get('harmony_modular.module_manager');
+        $manager = $this->container->get(ModuleManagerInterface::class);
 
         return $manager;
     }
@@ -68,7 +73,11 @@ class OptionsSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * Handle actions before the kernel matches the controller.
+     * Handles actions before the kernel matches the controller.
+     *
+     * Sets the options of the current module dynamically.
+     *
+     * todo refactor without using current module functionality
      *
      * @param GetResponseEvent $event
      */

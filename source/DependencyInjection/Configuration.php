@@ -14,6 +14,8 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
+ * Validates and merges configuration for the bundle.
+ *
  * @author Tim Goudriaan <tim@harmony-project.io>
  */
 class Configuration implements ConfigurationInterface

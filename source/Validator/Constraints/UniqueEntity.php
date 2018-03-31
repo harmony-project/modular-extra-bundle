@@ -13,7 +13,7 @@ namespace Harmony\Bundle\ModularExtraBundle\Validator\Constraints;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity as BaseConstraint;
 
 /**
- * Constraint for the Unique Entity validator
+ * Constraint for `UniqueEntityValidator`.
  *
  * @author Tim Goudriaan <tim@codedmonkey.com>
  */

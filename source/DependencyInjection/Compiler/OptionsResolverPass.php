@@ -9,12 +9,17 @@
 namespace Harmony\Bundle\ModularExtraBundle\DependencyInjection\Compiler;
 
 
-use Harmony\Bundle\ModularExtraBundle\Module\OptionsRegistry;
+use Harmony\Bundle\ModularExtraBundle\OptionsRegistry;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
-class OptionsPass implements CompilerPassInterface
+/**
+ * Scans the services tree for module options and adds the definitions to the registry.
+ *
+ * @author Tim Goudriaan <tim@harmony-project.io>
+ */
+class OptionsResolverPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
@@ -22,7 +27,7 @@ class OptionsPass implements CompilerPassInterface
             return;
         }
 
-        $definition     = $container->findDefinition(OptionsRegistry::class);
+        $definition = $container->findDefinition(OptionsRegistry::class);
         $taggedServices = $container->findTaggedServiceIds('harmony_modular_extra.options');
 
         foreach ($taggedServices as $id => $tags) {

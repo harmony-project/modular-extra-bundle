@@ -11,11 +11,13 @@
 namespace Harmony\Bundle\ModularExtraBundle\Validator\Constraints;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
-use Harmony\Component\ModularRouting\Model\ModularRepositoryInterface;
+use Harmony\Component\ModularRouting\Repository\ModularRepositoryInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntityValidator as BaseValidator;
 use Symfony\Component\Validator\Constraint;
 
 /**
+ * Checks if one or a set of fields contain unique values on a modular entity.
+ *
  * @author Tim Goudriaan <tim@harmony-project.io>
  */
 class UniqueEntityValidator extends BaseValidator
