@@ -1,6 +1,5 @@
 {
   "name": "harmony-project/modular-extra-bundle",
-  "type": "library",
   "description": "Adds additional functionality to the Symfony framework for projects that support modular routing",
   "keywords": ["routing", "database", "symfony"],
   "homepage": "http://harmony-project.io",
@@ -11,18 +10,27 @@
       "homepage": "http://codedmonkey.com"
     }
   ],
-  "require": {
-    "php": ">=7.0",
-    "harmony-project/modular-bundle": "^1.0@dev",
-    "symfony/symfony": "^3.0",
-    "symfony-cmf/routing-bundle": "^2.0",
-
-    "harmony-project/modular-routing": "^1.0@dev"
+  "support": {
+    "docs": "http://harmony-project.io/docs/modular-extra-bundle",
+    "issues": "https://github.com/harmony-project/modular-extra-bundle/issues",
+    "source": "https://github.com/harmony-project/modular-extra-bundle"
   },
-  "require-dev": {
-    "doctrine/orm": "^2.4",
-    "phpunit/phpunit": ">=6.0",
-    "sensio/framework-extra-bundle": "^3.0"
+  "type": "symfony-bundle",
+  "require": {
+    "php": "^7.1",
+    "doctrine/common": "^2.5",
+    "doctrine/orm": "^2.5",
+    "harmony-project/modular-bundle": "^0.1",
+    "harmony-project/modular-routing": "^0.1",
+    "psr/container": "^1.0",
+    "symfony/config": "^3.4|^4.0",
+    "symfony/dependency-injection": "^3.4|^4.0",
+    "symfony/doctrine-bridge": "^3.4|^4.0",
+    "symfony/framework-bundle": "^3.4|^4.0",
+    "symfony/http-kernel": "^3.4|^4.0",
+    "symfony/property-access": "^3.4|^4.0",
+    "symfony-cmf/routing-bundle": "^2.0",
+    "twig/twig": "^2.0"
   },
   "autoload": {
     "psr-4": {
@@ -31,7 +39,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0-dev"
+      "dev-master": "0.1.x-dev"
     }
   }
 }
