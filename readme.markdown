@@ -22,7 +22,7 @@ This bundle is available as a package on [Packagist](https://packagist.org):
 
 <!-- Line break -->
 
-* [ModularRouting](https://github.com/harmony-project/modular-routing)
+* [Harmony ModularRouting](https://github.com/harmony-project/modular-routing)
 * [HarmonyModularBundle](https://github.com/harmony-project/modular-bundle)
 
 ## License
