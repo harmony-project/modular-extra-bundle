@@ -1,7 +1,8 @@
 {
   "name": "harmony-project/modular-extra-bundle",
+  "type": "symfony-bundle",
   "description": "Adds additional functionality to the Symfony framework for projects that support modular routing",
-  "keywords": ["routing", "database", "symfony"],
+  "keywords": ["modular", "modules", "routing", "database", "symfony"],
   "homepage": "http://harmony-project.io",
   "license": "MIT",
   "authors": [
@@ -15,7 +16,6 @@
     "issues": "https://github.com/harmony-project/modular-extra-bundle/issues",
     "source": "https://github.com/harmony-project/modular-extra-bundle"
   },
-  "type": "symfony-bundle",
   "require": {
     "php": "^7.1",
     "doctrine/common": "^2.5",
